@@ -27,17 +27,19 @@ router.get('/', function(req, res) {
     res.json({ message: 'Welcome to the Resource Server' });   
 });
 
-router.post('/login', function(req, res) {
+
+// Try to access data 
+router.post('/token', function(req, res) {
 	if (req.body.accessToken === accessToken) {
 		
 		// Coordination with Authoriazation server? 
 
-		res.json({ message: 'Access authorized'); 
+		res.json({ message: 'Access authorized', data: 'some data'}); 
 
 
 	}
 	else {
-		res.json({ message: 'Not authorized!' }); 
+		res.json({ message: 'Access denied!' }); 
 	}	
 })
 
@@ -50,4 +52,4 @@ app.use('/api', router);
 // START THE SERVER
 // =============================================================================
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log('Server runnig on port ' + port);
