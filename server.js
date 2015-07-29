@@ -11,7 +11,7 @@
 	var querystring = require("querystring");
 
 
-	var accessToken = 'ii9hD7yw8ao9ereDh34aer93db';
+	//var accessToken = 'ii9hD7yw8ao9ereDh34aer93db';
 	var receivedAccessToken;
 
 	// configure app to use bodyParser()
@@ -37,8 +37,6 @@
 		receivedAccessToken = req.body.accessToken;
 
 		var data = querystring.stringify({data: 'Some data'});
-		 
-		var url1 = "pi-auth-server.herokuapp.com/token-validation?token="+receivedAccessToken;
 		var url = "pi-auth-server.herokuapp.com";
 
 		var options = {
@@ -52,22 +50,24 @@
     		}
 		};
 
-		var requ = http.request(options, function(resp) {
+		var newReq = http.request(options, function(resp) {
 	    	resp.setEncoding('utf8');
-	    	if(resp.statusCode == '200'){
+	    	
+	    	if(resp.statusCode === 200){
 				res.json({ message: 'Access authorized',
 						   data: {
 						   		name: 'Bob',
 						   		age: '30',
 						   		gender: 'male'
-						   }}); 
+						   }
+						}); 
 	    	} else {
 				res.json({ message: 'Access denied!' }); 
 	    	}
 		});
 
-		requ.write(data);
-		requ.end();
+		newReq.write(data);
+		newReq.end();
 
 	});
 
@@ -80,4 +80,4 @@
 	// START THE SERVER
 	// =============================================================================
 	app.listen(port);
-	console.log('Server runnig on port ' + port);
+	console.log('Server running on port ' + port);
