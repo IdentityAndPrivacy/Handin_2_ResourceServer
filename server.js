@@ -8,7 +8,7 @@
 var express    	= require('express');        // call express
 var app        	= express();                 // define our app using express
 var bodyParser 	= require('body-parser');
-var http 		= require('http');
+var https		= require('https');
 var querystring = require("querystring");
 var faker		= require('faker');
 
@@ -50,7 +50,6 @@ router.post('/token', function(req, res) {
 	// Options for the get request to the auth. server
 	var options = {
 		host: url,
-		port: 80,
 		method: 'GET',
 		path: '/token-validation?token='+receivedAccessToken,
 		headers: {
@@ -60,7 +59,7 @@ router.post('/token', function(req, res) {
 	};
 
 	// Make request to auth. server
-	var newReq = http.request(options, function(resp) {
+	var newReq = https.request(options, function(resp) {
 		resp.setEncoding('utf8');
 
     	// Handle response from auth. server
@@ -70,7 +69,7 @@ router.post('/token', function(req, res) {
     		var jsonData = { message: 'Access authorized',
     						data: { users:{} } }
 
-    		// gernerate fake data
+    		// gernerate fake user data
     		for(var i=0; i<20; i++){
     			var newuser = {
     				name: faker.name.findName(),
