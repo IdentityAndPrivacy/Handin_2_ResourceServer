@@ -34,7 +34,7 @@ var router = express.Router();				// get an instance of the express Router
 // Receive token from client and verify the token at the authorization server
 router.get('/users', function(req, res) {
 	// Coordination with Authoriazation server?
-	receivedAccessToken = req.body.accessToken;
+	receivedAccessToken =  url.parse(req.url,true).query.accessToken;
 
 	var data = querystring.stringify({data: 'Some data'});
 
