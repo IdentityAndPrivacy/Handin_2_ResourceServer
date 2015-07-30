@@ -38,7 +38,7 @@ router.get('/', function(req, res) {
 
 
 // Receive token from client and verify the token at the authorization server
-router.post('/token', function(req, res) {
+router.post('/users', function(req, res) {
 	// Coordination with Authoriazation server?
 	receivedAccessToken = req.body.accessToken;
 
@@ -97,7 +97,7 @@ router.post('/token', function(req, res) {
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', router);
+app.use('', router);
 
 
 // START THE SERVER
