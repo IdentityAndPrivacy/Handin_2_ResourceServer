@@ -10,10 +10,14 @@ var app        	= express();                 // define our app using express
 var bodyParser 	= require('body-parser');
 var http 		= require('http');
 var querystring = require("querystring");
+var faker		= require('faker');
 
 
 //var accessToken = 'ii9hD7yw8ao9ereDh34aer93db';
 var receivedAccessToken;
+
+//setup faker
+faker.local = 'en_GB';
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -63,13 +67,22 @@ router.post('/token', function(req, res) {
     	if(resp.statusCode === 200){ 
     		// Successful responce - access granted to client
     		// json response to client  
-    		res.json({ message: 'Access authorized',
-    			data: {
-    				name: 'Bob',
-    				age: '30',
-    				gender: 'male'
+    		var jsonData = { message: 'Access authorized',
+    						data: { users:{} } }
+
+    		// gernerate fake data
+    		for(var i=0; i<20; i++){
+    			var newuser = {
+    				name: faker.name.findName(),
+    				title: faker.name.title(),
+    				address: faker.address.streetAddress(),
+    				city: faker.address.city(),
+    				phone: faker.phone.phoneNumber(),
+    				image: faker.image.avatar()
     			}
-    		}); 
+    			jsonData.data.users[i] = (newuser);
+    		}
+    		res.json(jsonData);
     	} else {
     		// Error Handling
     		// Access denied (StatusCode = 421)
