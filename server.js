@@ -77,7 +77,7 @@ router.post('/token', function(req, res) {
     				address: faker.address.streetAddress(),
     				city: faker.address.city(),
     				phone: faker.phone.phoneNumber(),
-    				image: faker.image.image()
+    				image: faker.image.animals()
     			}
     			jsonData.data.users[i] = (newuser);
     		}
