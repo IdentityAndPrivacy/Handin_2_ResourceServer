@@ -8,7 +8,7 @@
 var express    	= require('express');        // call express
 var app        	= express();                 // define our app using express
 var bodyParser 	= require('body-parser');
-var https 		= require('https');
+var http 		= require('http');
 var querystring = require("querystring");
 var faker		= require('faker');
 
@@ -60,7 +60,7 @@ router.post('/token', function(req, res) {
 	};
 
 	// Make request to auth. server
-	var newReq = https.request(options, function(resp) {
+	var newReq = http.request(options, function(resp) {
 		resp.setEncoding('utf8');
 
     	// Handle response from auth. server
