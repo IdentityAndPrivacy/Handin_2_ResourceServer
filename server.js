@@ -12,7 +12,7 @@ var https		= require('https');
 var http 		= require('http');
 var querystring = require("querystring");
 var faker		= require('faker');
-var url 	   	= require('url');
+var url 		= require('url');
 
 
 //var accessToken = 'ii9hD7yw8ao9ereDh34aer93db';
@@ -37,7 +37,7 @@ var router = express.Router();				// get an instance of the express Router
 router.get('/users', function(req, res) {
 	// Coordination with Authoriazation server?
 	console.log(req.url);
-	receivedAccessToken =  require('url').parse(req.url,true).query.accessToken;
+	receivedAccessToken =  url.parse(req.url,true).query.accessToken;
 
 	var data = querystring.stringify({data: 'Some data'});
 
