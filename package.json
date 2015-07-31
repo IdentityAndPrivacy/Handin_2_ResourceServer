@@ -1,8 +1,9 @@
 {
-    "name": "auth",
-    "main": "server.js",
-    "dependencies": {
-        "express": "~4.0.0",
-        "body-parser": "~1.0.1"
-    }
+  "name": "auth",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~4.0.0",
+    "body-parser": "~1.0.1",
+    "faker": "^3.0.0"
+  }
 }
